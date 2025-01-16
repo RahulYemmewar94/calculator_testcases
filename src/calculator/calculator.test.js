@@ -15,4 +15,16 @@ describe("Calculator Test Cases", () => {
         expect(screen.getByText("17")).toBeInTheDocument();
       });
 
+      test("Subtraction", () => {
+        render(<CalculatorWithJestTestCases />);
+        
+        fireEvent.click(screen.getByText("5"));
+        fireEvent.click(screen.getByText("3"));
+        fireEvent.click(screen.getByText("-"));
+        fireEvent.click(screen.getByText("2"));
+        fireEvent.click(screen.getByText("="));
+        
+        expect(screen.getByText("51")).toBeInTheDocument();
+      });
+
 });
