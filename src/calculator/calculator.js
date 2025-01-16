@@ -7,7 +7,7 @@ const CalculatorWithJestTestCases = () => {
     "7",
     "8",
     "9",
-    "/",
+    "-",
     "4",
     "5",
     "6",
@@ -15,7 +15,7 @@ const CalculatorWithJestTestCases = () => {
     "1",
     "2",
     "3",
-    "-",
+    "/",
     "0",
     ".",
     "C",
@@ -25,6 +25,19 @@ const CalculatorWithJestTestCases = () => {
 
   const handleCalculations = (value) => {
     console.log(value);
+    if (value === "=") {
+        try {
+            const result = new Function(`return ${input}`)();
+            setInput(result.toString());
+        } catch (error) {
+            setInput("Error");
+        }
+    } else if (value === "C") {
+        setInput("");
+    } else {
+        setInput(prevInput => prevInput + value);
+    }
+    
     
   }
 
