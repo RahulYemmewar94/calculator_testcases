@@ -3,6 +3,7 @@ import './calculator.css'
 
 const CalculatorWithJestTestCases = () => {
   const [input, setInput] = useState("");
+  
 
   const arrayButtons = [
     "7",
@@ -25,7 +26,6 @@ const CalculatorWithJestTestCases = () => {
   ];
 
   const handleCalculations = (value) => {
-    console.log('value',value);
     if (value === "=") {
         try {
             const result = new Function(`return ${input}`)();
