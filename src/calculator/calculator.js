@@ -45,7 +45,7 @@ const CalculatorWithJestTestCases = () => {
     <>
       <div className="calculator">
         <div className="display">{input || "0"}</div>
-        <div className="buttons">
+        <div className="buttons"> 
           {arrayButtons.map((item, i) => (
             <button key={i} onClick={() => handleCalculations(item)}>{item}</button>
           ))}
