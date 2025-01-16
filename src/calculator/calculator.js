@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './calculator.css'
 
 const CalculatorWithJestTestCases = () => {
   const [input, setInput] = useState("");
@@ -24,7 +25,7 @@ const CalculatorWithJestTestCases = () => {
   ];
 
   const handleCalculations = (value) => {
-    console.log(value);
+    console.log('value',value);
     if (value === "=") {
         try {
             const result = new Function(`return ${input}`)();
@@ -43,7 +44,7 @@ const CalculatorWithJestTestCases = () => {
 
   return (
     <>
-      <div className="calculator">
+      <div className="calc">
         <div className="display">{input || "0"}</div>
         <div className="buttons"> 
           {arrayButtons.map((item, i) => (
