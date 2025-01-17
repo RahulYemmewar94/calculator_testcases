@@ -2,27 +2,39 @@ import React, { useState } from "react";
 import './calculator.css';
 
 const CalculatorWithJestTestCases = () => {
-  const [input, setInput] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const handleCalculations = (value) => {
     if (value === "=") {
       try {
-        const result = new Function(`return ${input}`)();
-        setInput(result.toString());
+        // Evaluate the mathematical expression
+        const result = new Function(`return ${inputValue}`)();
+        setInputValue(result.toString());
       } catch (error) {
-        setInput("Error");
+        setInputValue("Enter the number");
       }
     } else if (value === "C") {
-      setInput("");
+      setInputValue(""); 
     } else {
-      setInput((prevInput) => prevInput + value);
+      if (inputValue === "Enter the number" && !["+", "-", "*", "/"].includes(value)) {
+        setInputValue(value); 
+      } else {
+        if (["+", "-", "*", "/"].includes(value)) {
+          if (inputValue && !["+", "-", "*", "/"].includes(inputValue.slice(-1))) {
+            setInputValue((prevInput) => prevInput + value);
+          }
+        } else {
+          setInputValue((prevInput) => prevInput + value);
+        }
+      }
     }
   };
+  
 
   return (
     <>
       <div className="calc">
-        <div className="display" data-testid="result">{input || "0"}</div>
+        <div className="display" data-testid="result">{inputValue || "0"}</div>
         <div className="buttons">
           <button data-testid="7" onClick={() => handleCalculations("7")}>7</button>
           <button data-testid="8" onClick={() => handleCalculations("8")}>8</button>

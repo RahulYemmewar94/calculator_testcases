@@ -5,41 +5,51 @@ describe("Calculator Test Cases", () => {
   test("Addition", async () => {
     render(<CalculatorWithJestTestCases />);
     
-    // Simulate button clicks for addition
-    fireEvent.click(screen.getByText("5"));
-    fireEvent.click(screen.getByText("+"));
     fireEvent.click(screen.getByText("2"));
+    fireEvent.click(screen.getByText("1"));
+    fireEvent.click(screen.getByText("+"));
+    fireEvent.click(screen.getByText("6"));
+    fireEvent.click(screen.getByText("1"));
+    fireEvent.click(screen.getByText("5"));
     fireEvent.click(screen.getByText("="));
     
-    // Wait for the calculation result and validate it
     const result = await screen.findByTestId("result"); 
-    expect(result).toHaveTextContent("7"); 
+    expect(result).toHaveTextContent("636"); 
   });
 
   test("Subtraction", async () => {
     render(<CalculatorWithJestTestCases />);
-    
-    // Simulate button clicks for subtraction
-    fireEvent.click(screen.getByText("9"));
+  
+    fireEvent.click(screen.getByText("8"));
+    fireEvent.click(screen.getByText("5")); 
     fireEvent.click(screen.getByText("-"));
     fireEvent.click(screen.getByText("2"));
-    fireEvent.click(screen.getByText("="));
-    
-    // Wait for the calculation result and validate it
-    const result = await screen.findByTestId("result"); // Ensure your calculator display has the data-testid="result"
-    expect(result).toHaveTextContent("7"); // Validate the result is "1"
+    fireEvent.click(screen.getByText("=")); 
+  
+    const result = await screen.findByTestId("result"); 
+
+    expect(result).toHaveTextContent("83"); 
   });
   test("Multiplication", async () => {
     render(<CalculatorWithJestTestCases />);
     
-    // Simulate button clicks for subtraction
-    fireEvent.click(screen.getByText("3"));
+    fireEvent.click(screen.getByText("8"));
     fireEvent.click(screen.getByText("*"));
-    fireEvent.click(screen.getByText("2"));
+    fireEvent.click(screen.getByText("5"));
     fireEvent.click(screen.getByText("="));
     
-    // Wait for the calculation result and validate it
-    const result = await screen.findByTestId("result"); // Ensure your calculator display has the data-testid="result"
-    expect(result).toHaveTextContent("6"); // Validate the result is "1"
+    const result = await screen.findByTestId("result");
+    expect(result).toHaveTextContent("40"); 
+  });
+  test("Division", async () => {
+    render(<CalculatorWithJestTestCases />);
+    
+    fireEvent.click(screen.getByText("8"));
+    fireEvent.click(screen.getByText("/"));
+    fireEvent.click(screen.getByText("3"));
+    fireEvent.click(screen.getByText("="));
+    
+    const result = await screen.findByTestId("result");
+    expect(result).toHaveTextContent("2.6666666666666665"); 
   });
 });
