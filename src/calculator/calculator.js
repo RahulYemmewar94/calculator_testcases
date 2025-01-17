@@ -1,55 +1,46 @@
 import React, { useState } from "react";
-import './calculator.css'
+import './calculator.css';
 
 const CalculatorWithJestTestCases = () => {
   const [input, setInput] = useState("");
-  
-
-  const arrayButtons = [
-    "7",
-    "8",
-    "9",
-    "-",
-    "4",
-    "5",
-    "6",
-    "*",
-    "1",
-    "2",
-    "3",
-    "/",
-    "0",
-    ".",
-    "C",
-    "+",
-    "=",
-  ];
 
   const handleCalculations = (value) => {
     if (value === "=") {
-        try {
-            const result = new Function(`return ${input}`)();
-            setInput(result.toString());
-        } catch (error) {
-            setInput("Error");
-        }
+      try {
+        const result = new Function(`return ${input}`)();
+        setInput(result.toString());
+      } catch (error) {
+        setInput("Error");
+      }
     } else if (value === "C") {
-        setInput("");
+      setInput("");
     } else {
-        setInput(prevInput => prevInput + value);
+      setInput((prevInput) => prevInput + value);
     }
-    
-    
-  }
+  };
 
   return (
     <>
       <div className="calc">
-        <div className="display">{input || "0"}</div>
-        <div className="buttons"> 
-          {arrayButtons.map((item, i) => (
-            <button key={i} onClick={() => handleCalculations(item)}>{item}</button>
-          ))}
+        <div className="display" data-testid="result">{input || "0"}</div>
+        <div className="buttons">
+          <button data-testid="7" onClick={() => handleCalculations("7")}>7</button>
+          <button data-testid="8" onClick={() => handleCalculations("8")}>8</button>
+          <button data-testid="9" onClick={() => handleCalculations("9")}>9</button>
+          <button data-testid="-" onClick={() => handleCalculations("-")}>-</button>
+          <button data-testid="4" onClick={() => handleCalculations("4")}>4</button>
+          <button data-testid="5" onClick={() => handleCalculations("5")}>5</button>
+          <button data-testid="6" onClick={() => handleCalculations("6")}>6</button>
+          <button data-testid="*" onClick={() => handleCalculations("*")}>*</button>
+          <button data-testid="1" onClick={() => handleCalculations("1")}>1</button>
+          <button data-testid="2" onClick={() => handleCalculations("2")}>2</button>
+          <button data-testid="3" onClick={() => handleCalculations("3")}>3</button>
+          <button data-testid="/" onClick={() => handleCalculations("/")}>/</button>
+          <button data-testid="0" onClick={() => handleCalculations("0")}>0</button>
+          <button data-testid="." onClick={() => handleCalculations(".")}>.</button>
+          <button data-testid="C" onClick={() => handleCalculations("C")}>C</button>
+          <button data-testid="+" onClick={() => handleCalculations("+")}>+</button>
+          <button data-testid="=" onClick={() => handleCalculations("=")}>=</button>
         </div>
       </div>
     </>
